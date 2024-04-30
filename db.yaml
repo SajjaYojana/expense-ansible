@@ -4,7 +4,7 @@
   vars:
     login_host: db.daws78s.fun
   tasks:
-  - name: install mysql server
+  - name: install mysql 
     ansible.builtin.dnf:
       name: mysql-server
       state: latest
