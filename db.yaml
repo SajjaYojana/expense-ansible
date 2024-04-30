@@ -1,5 +1,5 @@
 - name: configure DB server
-  hosts: db
+  hosts: web
   become: yes
   vars:
     login_host: db.daws78s.fun
@@ -19,14 +19,14 @@
       state: started
       enabled: yes
 
- # - name: install python mysql dependencies
-  #  ansible.builtin.pip:
-   #   name:
-    #  - PyMySQL
-     # - cryptography
-      #executable: pip3.9 # pip3.11 if python version is 3.11
+  - name: install python mysql dependencies
+    ansible.builtin.pip:
+      name:
+      - PyMySQL
+      - cryptography
+      executable: pip3.9 # pip3.11 if python version is 3.11
 
-  # check password is already setup or not
+   check password is already setup or not
   - name: check DB connection
     community.mysql.mysql_info:
       login_user: root
@@ -40,6 +40,6 @@
     ansible.builtin.debug:
       msg: "Output: {{mysql_connection_output}} "
 
- # - name: setup root password
-  #  ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ mysql_root_password }}"
-   # when: mysql_connection_output.failed is true
+  - name: setup root password
+    ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ mysql_root_password }}"
+     when: mysql_connection_output.failed is true
