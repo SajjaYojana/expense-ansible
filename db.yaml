@@ -16,9 +16,8 @@
       enabled: yes 
 
   #check password is setup or not
-  - name: check DB connection
-    - name: Collect all possible information using passwordless root access
-      community.mysql.mysql_info:
+  - name: check DB connection 
+    community.mysql.mysql_info:
       login_user: root
       login_password: ExpenseApp@1
       login_host: "{{ login_ host }}
