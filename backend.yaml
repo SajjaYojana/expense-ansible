@@ -15,6 +15,6 @@
       name: nodejs
       state: lastest
 
-  - name: Create expense user
+  - name: create expense user
     ansible.builtin.adduser:
       name: expense         
